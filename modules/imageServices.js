@@ -1,4 +1,5 @@
 import * as ImagePicker from 'expo-image-picker'
+import awsService from "./awsService";
 
 export const handleChoosePhoto = async (setPhoto) => {
   console.log('Uploading')
@@ -8,10 +9,18 @@ export const handleChoosePhoto = async (setPhoto) => {
     return;
   }
 
-  let pickedPhoto = await ImagePicker.launchImageLibraryAsync();
+  let pickedPhoto = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.All,
+    allowsEditing: true,
+    base64: true,
+    aspect: [4, 3],
+    quality: 1,
+  });
   if (pickedPhoto.cancelled) {
     return
   }
+  
+  awsService.upload(pickedPhoto)
   setPhoto(pickedPhoto)
 }
 
