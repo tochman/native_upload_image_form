@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { globals } from '../styles/globals'
-import { handleChoosePhoto } from '../modules/imageServices'
+import { handleChoosePhoto, handleTakePhoto } from '../modules/imageServices'
 import StandardButton from '../shared/StandardButton'
 
 const UploadImage = ({ route, navigation }) => {
@@ -18,7 +18,7 @@ const UploadImage = ({ route, navigation }) => {
         <Text style={globals.h1}>Upload an image from your library or take a new photo:</Text>
         <View style={{ flexDirection: 'row' }}>
           <StandardButton title='Upload an image' style={{ width: '45%' }} onPress={() => handleChoosePhoto(setPhoto)} />
-          <StandardButton title='Take a new photo' style={{ width: '45%' }} />
+          <StandardButton title='Take a new photo' style={{ width: '45%' }} onPress={() => handleTakePhoto(setPhoto)} />
         </View>
         {photo && (
           <View>
