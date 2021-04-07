@@ -12,6 +12,7 @@ export const handleChoosePhoto = async (setPhoto) => {
   if (pickedPhoto.cancelled) {
     return
   }
+  console.log(pickedPhoto)
   setPhoto(pickedPhoto)
 }
 

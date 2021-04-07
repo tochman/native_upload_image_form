@@ -3,7 +3,7 @@ import { globals } from '../styles/globals'
 import { StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native'
 import { Asset } from 'expo-asset';
 import { ExpoWebGLRenderingContext, GLView } from 'expo-gl';
-import { Renderer, TextureLoader, THREE } from 'expo-three';
+import { Renderer, TextureLoader } from 'expo-three';
 import {
   AmbientLight,
   BoxBufferGeometry,
