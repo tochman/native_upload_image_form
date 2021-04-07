@@ -13,7 +13,7 @@ const Stack = createStackNavigator()
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Welcome'>
+      <Stack.Navigator initialRouteName='3D Receiver'>
         <Stack.Screen name='Welcome' component={StartScreen} />
         <Stack.Screen name='Measurements' component={MeasurementsForm} />
         <Stack.Screen name='Upload Image' component={UploadImage} />
