@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { globals } from '../styles/globals'
-import { StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { Asset } from 'expo-asset';
 import { ExpoWebGLRenderingContext, GLView } from 'expo-gl';
 import { Renderer, TextureLoader, THREE } from 'expo-three';
 import {
   AmbientLight,
-  BoxBufferGeometry,
   Fog,
-  GridHelper,
-  Mesh,
-  MeshStandardMaterial,
-  ObjectSpaceNormalMap,
   PerspectiveCamera,
   PointLight,
   Scene,
   SpotLight,
+  GridHelper
 } from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
@@ -23,21 +19,20 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
 const API_KEY_3D = 'jcDuLnzAQdVXUJkuuhCojttASWcfaWlaewGkWwg'
 const ObjectReceiver = ({ route, navigation }) => {
+  debugger
   let timeout;
-  // const { height, photo } = route.params.data
+  const { height, photo } = route.params.data
   const [objectImage, setObjectImage] = useState(null)
 
 
   const getBob = async () => {
-    const bob = Asset.fromModule(require('../assets/random_dude.obj'));
+    const bob = Asset.fromModule(require('../assets/avatar.obj'));
     const loader = new OBJLoader();
 
     await bob.downloadAsync()
     loader.load(bob.localUri, bobActual => {
-      // debugger
       setObjectImage(bobActual)
     });
-    // return bob.localUri;
   }
 
   useEffect(() => {
@@ -67,25 +62,25 @@ const ObjectReceiver = ({ route, navigation }) => {
               camera.zoom = 5
               const scene = new Scene();
               scene.fog = new Fog(sceneColor, 1, 10000);
-              // scene.add(new GridHelper(10, 10));
+              scene.add(new GridHelper(10, 10));
 
               const ambientLight = new AmbientLight(0x101010);
               scene.add(ambientLight);
 
               const pointLight = new PointLight(0xffffff, 2, 1000, 1);
-              pointLight.position.set(0, 200, 200);
+              pointLight.position.set(0, 600, 200);
               scene.add(pointLight);
 
               const spotLight = new SpotLight(0xffffff, 0.5);
-              spotLight.position.set(0, 500, 100);
+              spotLight.position.set(100, 600, 300);
               spotLight.lookAt(scene.position);
               scene.add(spotLight);
 
-              objectImage.scale.multiplyScalar(4);
-              objectImage.rotation.y += 0.5;
+              objectImage.scale.multiplyScalar(2.5);
+              objectImage.rotation.y -= 0.25;
               scene.add(objectImage);
               console.log(objectImage.position)
-              camera.lookAt(0, 0, 0);
+              camera.lookAt(0, 2, 0);
 
               function update() {
                 //  objectImage.rotation.y += 0.05;
