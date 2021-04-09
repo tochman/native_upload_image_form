@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { globals } from '../styles/globals'
+import { AWS_KEY, AWS_SECRET, AWS_REGION, AWS_BUCKET, API_KEY_3D } from '@env'
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native'
 import { Asset } from 'expo-asset';
 import { ExpoWebGLRenderingContext, GLView } from 'expo-gl';
@@ -19,16 +21,58 @@ import {
 } from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
-
-
-const API_KEY_3D = 'jcDuLnzAQdVXUJkuuhCojttASWcfaWlaewGkWwg'
 const ObjectReceiver = ({ route, navigation }) => {
-  let timeout;
-  // const { height, photo } = route.params.data
+
+  const { height, photo } = route.params.data
   const [objectImage, setObjectImage] = useState(null)
 
+  // client.middlewareStack.add((next, context) => (args) => {
+  //   args.request.headers['Access-Control-Allow-Origin'] = true;
+  //   return next(args)
+  // },
+  //   {
+  //     step: 'build'
+  //   }
+  // )
+
+  const imageToUrl = async () => {
+    const client = new S3Client({
+      region: AWS_REGION,
+      credentials: {
+        accessKeyId: AWS_KEY,
+        secretAccessKey: AWS_SECRET,
+      }
+    })
+
+    const params = {
+      Bucket: AWS_BUCKET,
+      Key: "photo",
+      Body: photo.uri
+    }
+
+    try {
+      const command = new PutObjectCommand(params)
+      const data = await client.send(command)
+      console.log(data)
+      debugger
+    } catch (error) {
+      console.log(error)
+      debugger
+
+    }
+  }
 
   const getBob = async () => {
+    // Test with https://www.swiminn.com/f/13724/137244961/arena-powerskin-st-2.0-full-body-short-leg-limited-edition.jpg
+    // 1. Upload to AWS
+    // await imageToUrl()
+    imageToUrl()
+    // 2. Send request to https://image2scan.3dmeasureup.com/createmesh
+    // 3. Render response object
+    // 3.1 Clicks next when satisfied
+    // 4. Send off object url to https://api.3dmu.prototechsolutions.com/v3/models/measure
+    // 5. Use response to start a GET request loop to https://api.3dmu.prototechsolutions.com/v3/models/metrics?requestId=<idFromEarlier>
+
     const bob = Asset.fromModule(require('../assets/random_dude.obj'));
     const loader = new OBJLoader();
 
@@ -42,14 +86,14 @@ const ObjectReceiver = ({ route, navigation }) => {
 
   useEffect(() => {
     getBob()
-  }, [])
+  }, [navigation])
 
   return (
     <View style={globals.container}>
       <View style={styles.formContainer}>
         <Text>This is Bob!</Text>
 
-        {objectImage &&
+        {/* {objectImage &&
 
           <GLView
             style={{ flex: 1 }}
@@ -102,7 +146,7 @@ const ObjectReceiver = ({ route, navigation }) => {
               render();
             }}
           />
-        }
+        } */}
       </View>
     </View>
   )
