@@ -47,5 +47,6 @@ const styles = StyleSheet.create({
     height: 150,
     alignSelf: 'center',
     marginVertical: 15,
+    resizeMode: 'contain'
   }
 })
