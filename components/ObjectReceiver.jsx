@@ -3,6 +3,7 @@ import { globals } from '../styles/globals'
 import { AWS_KEY, AWS_SECRET, AWS_REGION, AWS_BUCKET, API_KEY_3D } from '@env'
 import uuid from 'react-native-uuid'
 import axios from 'axios'
+import * as FileSystem from 'expo-file-system'
 import { StyleSheet, Text, View } from 'react-native'
 import { Asset } from 'expo-asset';
 import { GLView } from 'expo-gl';
@@ -28,19 +29,18 @@ const ObjectReceiver = ({ route, navigation }) => {
   const [objectImage, setObjectImage] = useState(null)
   const [measurements, setMeasurements] = useState()
 
-  const imageToUrl = async () => {
+  const uploadToAWS = async (path, prefix, filename, mediaType,) => {
     // Generates a random fileId
     const fileId = uuid.v4()
     // Defines file to be uploaded
-    let uri = photo.uri ? photo.uri : photo
     const file = {
-      uri: uri,
-      name: `${fileId}.png`,
-      type: 'image/png'
+      uri: path,
+      name: `${fileId}.${filename}`,
+      type: mediaType
     }
     // Configurations for S3 upload
     const options = {
-      keyPrefix: "3D/",
+      keyPrefix: `${prefix}/`,
       bucket: AWS_BUCKET,
       region: AWS_REGION,
       accessKey: AWS_KEY,
@@ -58,29 +58,43 @@ const ObjectReceiver = ({ route, navigation }) => {
   }
 
   const getBob = async () => {
-    let url = await imageToUrl()
-    console.log(url.location)
+    let imageUrl = await uploadToAWS(photo.uri, 'Image', 'png', 'image/png')
+    console.log(imageUrl.location)
 
     // Request to turn 2D into 3D
     let imageMock = "https://2d23d-staging.s3.amazonaws.com/3D%2F2ab2c32f-e258-45d7-a22d-5f9ccef64489.png"
     let params1 = {
       height: height,
-      imageurl: url.location
+      imageurl: imageMock
     }
-    let response
+    let response, objUrl
     try {
       console.log(`Sending 3D request with params: ${params1}`)
-      response = await axios.post('https://image2scan.3dmeasureup.com/createmesh', params1)
-      console.log(response)
-      setObjectImage(response.data.fileurl)
+
+      // Uploads object to AWS
+      // response = await axios.post('https://image2scan.3dmeasureup.com/createmesh', params1)
+      let mockObj = "https://3dmu-development-space.s3.amazonaws.com/PIFuHD/QVptA4FsNZKhw3eGnUs8wr.obj?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA2VKJASSLYZVQAXEJ%2F20210413%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20210413T092954Z&X-Amz-Expires=14400&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHgaCmFwLXNvdXRoLTEiSDBGAiEA76tOdyobQwS5J709lxU7j4qO9YwJfszL2SYrDMADmksCIQCG8huuyr6A9jDCJY3axTLvps%2FpJW01ykEayLoZp6jvaiq%2FAwjR%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAIaDDczMjk4MTkyNTAxNSIMU3TG2XLUQl7Ie04lKpMDq7vIXj9plh2uDrg%2B%2FN0ngWaz%2FckKpNd8fxfdSdqlII%2Fvxc7TYWjBfa0qwlPLwZeFXN4bYT9Y60NciTeUIQd0ztgYL0q1mucF6KfhA5IalA2OOtFbdS2Qu9oQcPpAWnUmMjLOayxqm83cpJ3sqg71WVjsOG1aeEfFJ39RpCOlYvCTsbpuNLm9NLofqf3VzZFJxQRvnx1MS2LyizOxlibOd8oFH%2FEJb6Vt27dZtR7CITLHHWhs6TxLZK4vwXzrOGuYxl0epXY44Nr6JsFjXGPtY5Wx2A4U19Y6Fcp2Irzv4h8O1FVFavagJNYk9nTLZP0u%2By7iSHgJwP2%2FA9%2BwYaimxC7lfj2Jur03h3z%2FzeUYh%2FN337hETjXSxpvoM%2FKomk2BrrWuHo9CHvf67Nd8%2Fj7Yaw7Uu78Z9JhV3NeFItrRYQHCCzwEaqI3KDxbTzWen1pE%2FSnGIM7dtTqHS80U0h3V3ANZLPA9Z7WAzjf0D4aNUl53f7u7m6V6Te130uus6vgfM7FA3RmNj3XxRRJsU1UblT8AjTDYodWDBjrqAUcXgHxuVJcZS2O2ch1m5BG4%2FYAnrzvn%2F911Y0nUPiYlMjlcSAMmUSUVx9wHeDhILAkb6Hh3SN4%2FCTApZRkDs1W%2BS6LOFK2sQ8rpbdzT%2Bz50uU1hPK7mOc5E4XbalqRELjwy294Zf0p7YUniLlJojfTt05bTYDrZsypIj50stYloTV00Rt%2BM9Si3eMQVIT8WKtNIfPXTa8ErCCCOWfH9dstN%2Bq0wP6HiVyEkpMy3V1l%2FQgcgdLaWxthqt4is4YNHc5dk8gm%2B2oLF%2BhE9zZOhoWFf3uDZreVmGf%2FJSjripxvXY1cFnIaQRGQNNw%3D%3D&X-Amz-Signature=de935ffa7cb488b161d6e07516fb70bd6eacc56ccb1be9f09922993546622bcf"
+      // Creates a folder
+      let folder = FileSystem.cacheDirectory + uuid.v4()
+      await FileSystem.makeDirectoryAsync(folder, { intermediates: true })
+
+      // Downloads obj into that folder
+      let objFile = await FileSystem.downloadAsync(mockObj, folder)
+      console.log(objFile)
+      console.log(objFile.uri)
+      // Uploads the obj to AWS
+      objUrl = await uploadToAWS(objFile.uri, 'Object', 'obj', 'application/x-tgif')
+      setObjectImage(objUrl.location)
+      console.log(objUrl)
       debugger
+      return
     } catch (error) {
       console.log(error)
       debugger
+      return
     }
 
     // Request to create measurements
-    let objMock = "https://3dmu-development-space.s3.amazonaws.com/PIFuHD/hDMaL9dvbPMGRVDhN3p5nE.obj?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA2VKJASSL2YD2R6EY%2F20210412%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20210412T202016Z&X-Amz-Expires=14400&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEGoaCmFwLXNvdXRoLTEiRzBFAiEArZ8xhL%2B8uZDHdxRMk%2Bgs7SgzvMKGE3ZWobzfbWryG1oCICetMFmVvlm2CSyDc7cpu%2BWIs75QoKAzXPPFSAPvBtXKKr8DCMP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQAhoMNzMyOTgxOTI1MDE1IgzYtjXXpaJNf3MPvpsqkwOTHUMXGPKg%2FvJMPOKL6nXojTzWJT%2B3k9rLVjDm3yvKdflYEmkd594BAbC4R2H1ad0VTRID201rgmugthf4ZOCWo%2Fyk9yvzEhAatsXqdXcmzr3iMk7vwh4kawdQiVa1wYnNqpdWc3NVPGNzvzgokUxAz7ylKDWADutG%2B%2BZJkrSIhpmLl4aDvYo%2BT012CpTZLZpBrox%2FPGgKbQ%2BGxTUnskMxNjPFg1ngbJB9iQeZNLfyRmyvQ%2BkTOqFjcjUM6l3pReGIeaP2MdZrw9jb5W6Q0FUC%2FLzcvt%2BOzb2P5Ivpl6YPAWuq3b%2Fee0qxGoiy5owTHKfjwyzMLh65m0M%2BWuEUrlH0ODg7LA%2FpjEdzwCs9TarieRNmp%2BSTQBaa73XQGwxkx29C4bKgI9pC4DYai4ay0pMHHWffTWnZC%2FKautuXea79K99aCQ%2BgYag%2FVap0uTjGCGq%2F3%2BEtZ1xcJhTCBTjLF7NFGaud4C%2FpGSr%2FvHtqI0cTVFQsG30Ta9BGUuU2TG6CbbmvPwxt2%2B53%2FDFNZXlztDb3a80YMNKU0oMGOusBa3U4z%2B19Him7KBsB62nHOgIGcr5XtYLNjoDhVH3BFMMt3XsqpUFFwzm8nEH0Undp1AITkJcmLLD7CJIyAcqUpoOJap9x0FlnAghLt6U7KFalpY78hOI9BH0hlHkx2JHfR9%2F0iN4E0Vt%2FDwp6rh4hggO4dqdz%2Bu%2FQJG5XrJ60vaPxsMbszRNRxbORlzkk3XfLpOXRs%2FhW9s76xrP4%2FETPTpZC13UBUQAv31RvMK4w3RBuPLesdpc8QSvlJWypHTUSymLC2Tdp%2Fll3T217UZDHOj56XNQj%2FrBo%2Bfr5Q5NlmO5J8roYWPrux2cXUQ%3D%3D&X-Amz-Signature=2a9ae86c01a6db8dc2d43c96a4e20aaf9a9e195051f554101b4e45339bd75906"
     let params2 = {
       "type": "all",
       "fileurl": objectImage,
