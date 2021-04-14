@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { globals } from '../styles/globals'
 import { StyleSheet, Text, View } from 'react-native'
 import { Asset } from 'expo-asset';
-import { ExpoWebGLRenderingContext, GLView } from 'expo-gl';
-import { Renderer, TextureLoader, THREE } from 'expo-three';
+import { GLView } from 'expo-gl';
+import { Renderer } from '../node_modules/expo-three';
 import {
   AmbientLight,
   Fog,
@@ -19,7 +19,6 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
 const API_KEY_3D = 'jcDuLnzAQdVXUJkuuhCojttASWcfaWlaewGkWwg'
 const ObjectReceiver = ({ route, navigation }) => {
-  debugger
   let timeout;
   const { height, photo } = route.params.data
   const [objectImage, setObjectImage] = useState(null)
