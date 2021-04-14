@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 
 
 export const handleChoosePhoto = async (setPhoto) => {
-  console.log('Uploading')
+  console.warn('Starting the uploading process ')
   let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
   if (permissionResult.granted === false) {
     alert("Permission to access camera roll is required!");
@@ -13,16 +13,19 @@ export const handleChoosePhoto = async (setPhoto) => {
 
   let pickedPhoto = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ImagePicker.MediaTypeOptions.All,
-    allowsEditing: true,
-    base64: true,
-    aspect: [4, 3],
+    allowsEditing: false,
+    base64: false,
     quality: 1,
   });
+
   if (pickedPhoto.cancelled) {
+    console.warn('Cancelled by user! ')
     return
+
+  } else {
+    console.warn('Image has been picked ')
   }
-  
-  awsService.upload(pickedPhoto)
+
   console.log(pickedPhoto)
 
   // Turns base64 into a File for web
