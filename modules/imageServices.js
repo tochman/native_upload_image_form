@@ -1,5 +1,7 @@
 import * as ImagePicker from 'expo-image-picker'
 import awsService from "./awsService";
+import { Platform } from 'react-native';
+
 
 export const handleChoosePhoto = async (setPhoto) => {
   console.log('Uploading')
@@ -21,6 +23,22 @@ export const handleChoosePhoto = async (setPhoto) => {
   }
   
   awsService.upload(pickedPhoto)
+  console.log(pickedPhoto)
+
+  // Turns base64 into a File for web
+  if (Platform.OS === 'web') {
+    await fetch(pickedPhoto.uri)
+      .then(res => res.blob())
+      .then(blob => {
+        const fd = new FormData();
+        const file = new File([blob], "testphoto.jpeg");
+        fd.append('image', file)
+
+        pickedPhoto = {
+          uri: URL.createObjectURL(file)
+        }
+      })
+  }
   setPhoto(pickedPhoto)
 }
 

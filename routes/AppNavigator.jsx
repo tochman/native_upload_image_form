@@ -6,6 +6,7 @@ import StartScreen from '../components/StartScreen'
 import MeasurementsForm from '../components/MeasurementsForm'
 import UploadImage from '../components/UploadImage';
 import ObjectReceiver from '../components/ObjectReceiver';
+import ObjectTester from '../components/ObjectTester';
 
 
 const Stack = createStackNavigator()
@@ -14,6 +15,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Welcome'>
+        <Stack.Screen name='Testing' component={ObjectTester} />
         <Stack.Screen name='Welcome' component={StartScreen} />
         <Stack.Screen name='Measurements' component={MeasurementsForm} />
         <Stack.Screen name='Upload Image' component={UploadImage} />

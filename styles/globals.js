@@ -17,11 +17,13 @@ export const globals = StyleSheet.create({
     fontSize: 15,
   },
   errorMessage: {
-    color: 'crimson'
+    color: 'crimson',
+    marginVertical: 5,
   },
   h1: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: 20
   }
 })
