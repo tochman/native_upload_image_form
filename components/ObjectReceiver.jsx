@@ -29,12 +29,12 @@ const ObjectReceiver = ({ route, navigation }) => {
   const [objectImage, setObjectImage] = useState(null)
   const [measurements, setMeasurements] = useState()
 
-  const uploadToAWS = async (path, prefix, filename, mediaType,) => {
+  const uploadToAWS = async (uri, prefix, filename, mediaType,) => {
     // Generates a random fileId
     const fileId = uuid.v4()
     // Defines file to be uploaded
     const file = {
-      uri: path,
+      uri: uri,
       name: `${fileId}.${filename}`,
       type: mediaType
     }
@@ -48,13 +48,13 @@ const ObjectReceiver = ({ route, navigation }) => {
       successActionStatus: 201
     }
     // Uploads file and returns the url
-    let url
+    let imageUrl
     await RNS3.put(file, options).then(response => {
       if (response.status !== 201)
         throw new Error("Failed to upload image to S3");
-      url = response.body.postResponse
+      imageUrl = response.body.postResponse
     })
-    return url
+    return imageUrl
   }
 
   const getBob = async () => {
@@ -81,11 +81,12 @@ const ObjectReceiver = ({ route, navigation }) => {
       // Downloads obj into that folder
       let objFile = await FileSystem.downloadAsync(mockObj, folder)
       console.log(objFile)
-      console.log(objFile.uri)
+
       // Uploads the obj to AWS
       objUrl = await uploadToAWS(objFile.uri, 'Object', 'obj', 'application/x-tgif')
-      setObjectImage(objUrl.location)
       console.log(objUrl)
+      setObjectImage(objUrl.location)
+
       debugger
       return
     } catch (error) {
@@ -129,7 +130,7 @@ const ObjectReceiver = ({ route, navigation }) => {
     }
 
 
-    // const object3D = Asset.fromModule(response.data.fileurl)
+    // const object3D = Asset.fromModule(objectImage)
     // const bob = Asset.fromModule(require('../assets/random_dude.obj'));
 
     // const loader = new OBJLoader();
@@ -228,13 +229,3 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
 })
-
-
-// Test with https://www.swiminn.com/f/13724/137244961/arena-powerskin-st-2.0-full-body-short-leg-limited-edition.jpg
-    // 1. Upload to AWS
-    // await imageToUrl()
-    // 2. Send request to https://image2scan.3dmeasureup.com/createmesh
-    // 3. Render response object
-    // 3.1 Clicks next when satisfied
-    // 4. Send off object url to https://api.3dmu.prototechsolutions.com/v3/models/measure
-    // 5. Use response to start a GET request loop to https://api.3dmu.prototechsolutions.com/v3/models/metrics?requestId=<idFromEarlier>
