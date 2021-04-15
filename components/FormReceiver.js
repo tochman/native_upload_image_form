@@ -6,6 +6,11 @@ import axios from 'axios'
 import * as FileSystem from 'expo-file-system'
 import { StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native'
 import { RNS3 } from 'react-native-aws3';
+import ModelView from 'react-native-gl-model-view';
+
+import becky from '../assets/becky.obj'
+
+
 
 const FormReceiver = ({ route, navigation }) => {
   const { height, photo } = route.params.data
@@ -95,7 +100,7 @@ const FormReceiver = ({ route, navigation }) => {
       "x-api-key": API_KEY_3D
     }
     let response2
-    Measurements are mocked out.Comment back in below and change requestId param in line 114
+    // Measurements are mocked out.Comment back in below and change requestId param in line 114
     // try {
     //   console.log(`Sending create measurements request with params: ${params2}`)
     //   response2 = await axios.post('https://api.3dmu.prototechsolutions.com/v3/models/measure', params2, { headers: headers })
@@ -133,22 +138,40 @@ const FormReceiver = ({ route, navigation }) => {
       {loading ? (
         <Text style={styles.loaderText}>Fetching your measurements, just a moment!</Text>
       ) : (
-          <Text style={globals.h1}>Your Measurements</Text>
-        )}
+        <Text style={globals.h1}>Your Measurements</Text>
+      )}
 
 
       <ActivityIndicator style={styles.loader} size='large' animating={loading} />
       {measurements && (
-        <FlatList
-          data={measurements}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.itemContainer}>
-              <Text style={styles.listItem}>{item.label}</Text>
-              <Text style={[styles.listItem, styles.length]}>{(item.length * 100).toFixed(1)} cm</Text>
-            </View>
-          )}
-        />
+        <>
+          <ModelView
+            model={{
+              uri: 'https://2d23d-staging.s3.amazonaws.com/objects%2Fddb0aac5-ec07-4c99-80cd-a94a09c62a6c.obj',
+            }}
+
+
+            scale={0.01}
+
+            translateZ={-2}
+            rotateZ={270}
+
+            style={{ flex: 1 }}
+          />
+          {/* <ModelView
+            source={{ zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
+          /> */}
+          <FlatList
+            data={measurements}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <View style={styles.itemContainer}>
+                <Text style={styles.listItem}>{item.label}</Text>
+                <Text style={[styles.listItem, styles.length]}>{(item.length * 100).toFixed(1)} cm</Text>
+              </View>
+            )}
+          />
+        </>
       )}
 
     </View>
