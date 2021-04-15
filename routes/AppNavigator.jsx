@@ -19,7 +19,7 @@ const AppNavigator = () => {
         <Stack.Screen name='Welcome' component={StartScreen} />
         <Stack.Screen name='Measurements' component={MeasurementsForm} />
         <Stack.Screen name='Upload Image' component={UploadImage} />
-        <Stack.Screen name='3D Receiver' component={ObjectReceiver} />
+        {/* <Stack.Screen name='3D Receiver' component={ObjectReceiver} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   )

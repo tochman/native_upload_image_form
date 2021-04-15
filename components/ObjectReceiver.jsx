@@ -163,7 +163,7 @@ const ObjectReceiver = ({ route, navigation }) => {
           // <GLView
           //   style={{ flex: 1 }}
           //   onContextCreate={async (gl) => {
-          //     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
+          //     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;   
           //     const sceneColor = 0x6ad6f0;
 
           //     // Create a WebGLRenderer without a DOM element
