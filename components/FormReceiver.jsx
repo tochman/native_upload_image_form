@@ -95,6 +95,7 @@ const FormReceiver = ({ route, navigation }) => {
       "x-api-key": API_KEY_3D
     }
     let response2
+    Measurements are mocked out.Comment back in below and change requestId param in line 114
     // try {
     //   console.log(`Sending create measurements request with params: ${params2}`)
     //   response2 = await axios.post('https://api.3dmu.prototechsolutions.com/v3/models/measure', params2, { headers: headers })
