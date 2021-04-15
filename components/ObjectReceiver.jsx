@@ -6,20 +6,16 @@ import axios from 'axios'
 import * as FileSystem from 'expo-file-system'
 import { StyleSheet, Text, View } from 'react-native'
 import { Asset } from 'expo-asset';
-import { GLView } from 'expo-gl';
+import { ExpoWebGLRenderingContext, GLView } from 'expo-gl';
 import { Renderer, TextureLoader } from 'expo-three';
 import {
   AmbientLight,
-  BoxBufferGeometry,
   Fog,
-  GridHelper,
-  Mesh,
-  MeshStandardMaterial,
-  ObjectSpaceNormalMap,
   PerspectiveCamera,
   PointLight,
   Scene,
   SpotLight,
+  GridHelper
 } from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { RNS3 } from 'react-native-aws3';
@@ -29,7 +25,7 @@ const ObjectReceiver = ({ route, navigation }) => {
   const [objectImage, setObjectImage] = useState(null)
   const [measurements, setMeasurements] = useState()
 
-  const uploadToAWS = async (uri, prefix, filename, mediaType,) => {
+  const uploadToAWS = async (uri, prefix, filename, mediaType) => {
     // Generates a random fileId
     const fileId = uuid.v4()
     // Defines file to be uploaded
@@ -48,52 +44,59 @@ const ObjectReceiver = ({ route, navigation }) => {
       successActionStatus: 201
     }
     // Uploads file and returns the url
-    let imageUrl
-    await RNS3.put(file, options).then(response => {
-      if (response.status !== 201)
-        throw new Error("Failed to upload image to S3");
-      imageUrl = response.body.postResponse
-    })
+    // let imageUrl
+
+    let response = await RNS3.put(file, options)
+    if (response.status !== 201) {
+      throw new Error("Failed to upload image to S3");
+    }
+    let imageUrl = response.body.postResponse
+    // await RNS3.put(file, options).then(response => {
+    //   if (response.status !== 201)
+    //     throw new Error("Failed to upload image to S3");
+    //   imageUrl = response.body.postResponse
+    // })
     return imageUrl
   }
 
   const getBob = async () => {
-    let imageUrl = await uploadToAWS(photo.uri, 'Image', 'png', 'image/png')
-    console.log(imageUrl.location)
+    // let imageUrl = await uploadToAWS(photo.uri, 'images', 'png', 'image/png')
+    // console.warn('Image uploaded to AWS: ' + imageUrl.location)
+    // // console.log(imageUrl.location)
 
-    // Request to turn 2D into 3D
-    let imageMock = "https://2d23d-staging.s3.amazonaws.com/3D%2F2ab2c32f-e258-45d7-a22d-5f9ccef64489.png"
-    let params1 = {
-      height: height,
-      imageurl: imageMock
-    }
-    let response, objUrl
-    try {
-      console.log(`Sending 3D request with params: ${params1}`)
+    // // Request to turn 2D into 3D
+    // // let imageMock = "https://2d23d-staging.s3.amazonaws.com/3D%2F2ab2c32f-e258-45d7-a22d-5f9ccef64489.png"
+    // let params1 = {
+    //   height: height,
+    //   imageurl: imageUrl.location
+    // }
+    // let renderedObject, objUrl
+    // try {
+    //   console.log(`Sending 3D request with params: ${params1.imageurl}`)
 
-      // Uploads object to AWS
-      // response = await axios.post('https://image2scan.3dmeasureup.com/createmesh', params1)
-      let mockObj = "https://3dmu-development-space.s3.amazonaws.com/PIFuHD/QVptA4FsNZKhw3eGnUs8wr.obj?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA2VKJASSLYZVQAXEJ%2F20210413%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20210413T092954Z&X-Amz-Expires=14400&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHgaCmFwLXNvdXRoLTEiSDBGAiEA76tOdyobQwS5J709lxU7j4qO9YwJfszL2SYrDMADmksCIQCG8huuyr6A9jDCJY3axTLvps%2FpJW01ykEayLoZp6jvaiq%2FAwjR%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAIaDDczMjk4MTkyNTAxNSIMU3TG2XLUQl7Ie04lKpMDq7vIXj9plh2uDrg%2B%2FN0ngWaz%2FckKpNd8fxfdSdqlII%2Fvxc7TYWjBfa0qwlPLwZeFXN4bYT9Y60NciTeUIQd0ztgYL0q1mucF6KfhA5IalA2OOtFbdS2Qu9oQcPpAWnUmMjLOayxqm83cpJ3sqg71WVjsOG1aeEfFJ39RpCOlYvCTsbpuNLm9NLofqf3VzZFJxQRvnx1MS2LyizOxlibOd8oFH%2FEJb6Vt27dZtR7CITLHHWhs6TxLZK4vwXzrOGuYxl0epXY44Nr6JsFjXGPtY5Wx2A4U19Y6Fcp2Irzv4h8O1FVFavagJNYk9nTLZP0u%2By7iSHgJwP2%2FA9%2BwYaimxC7lfj2Jur03h3z%2FzeUYh%2FN337hETjXSxpvoM%2FKomk2BrrWuHo9CHvf67Nd8%2Fj7Yaw7Uu78Z9JhV3NeFItrRYQHCCzwEaqI3KDxbTzWen1pE%2FSnGIM7dtTqHS80U0h3V3ANZLPA9Z7WAzjf0D4aNUl53f7u7m6V6Te130uus6vgfM7FA3RmNj3XxRRJsU1UblT8AjTDYodWDBjrqAUcXgHxuVJcZS2O2ch1m5BG4%2FYAnrzvn%2F911Y0nUPiYlMjlcSAMmUSUVx9wHeDhILAkb6Hh3SN4%2FCTApZRkDs1W%2BS6LOFK2sQ8rpbdzT%2Bz50uU1hPK7mOc5E4XbalqRELjwy294Zf0p7YUniLlJojfTt05bTYDrZsypIj50stYloTV00Rt%2BM9Si3eMQVIT8WKtNIfPXTa8ErCCCOWfH9dstN%2Bq0wP6HiVyEkpMy3V1l%2FQgcgdLaWxthqt4is4YNHc5dk8gm%2B2oLF%2BhE9zZOhoWFf3uDZreVmGf%2FJSjripxvXY1cFnIaQRGQNNw%3D%3D&X-Amz-Signature=de935ffa7cb488b161d6e07516fb70bd6eacc56ccb1be9f09922993546622bcf"
-      // Creates a folder
-      let folder = FileSystem.cacheDirectory + uuid.v4()
-      await FileSystem.makeDirectoryAsync(folder, { intermediates: true })
+    //   // Uploads object to AWS
+    //   renderedObject = await axios.post('https://image2scan.3dmeasureup.com/createmesh', params1)
+    //   // Creates a folder
+    //   let folder = FileSystem.cacheDirectory + uuid.v4()
+    //   await FileSystem.makeDirectoryAsync(folder, { intermediates: true })
 
-      // Downloads obj into that folder
-      let objFile = await FileSystem.downloadAsync(mockObj, folder)
-      console.log(objFile)
+    //   // Downloads obj into that folder
+    //   let objFile = await FileSystem.downloadAsync(renderedObject.data.fileurl, folder)
+    //   console.log(objFile)
 
-      // Uploads the obj to AWS
-      objUrl = await uploadToAWS(objFile.uri, 'Object', 'obj', 'application/x-tgif')
-      console.log(objUrl)
-      setObjectImage(objUrl.location)
-
-      debugger
-      return
-    } catch (error) {
-      console.log(error)
-      debugger
-      return
-    }
+    //   // Uploads the obj to AWS
+    //   objUrl = await uploadToAWS(objFile.uri, 'objects', 'obj', 'application/x-tgif')
+    //   console.log(objUrl)
+    // setObjectImage(objFile)
+    // let mockObj = "https://3dmu-development-space.s3.amazonaws.com/PIFuHD/QVptA4FsNZKhw3eGnUs8wr.obj?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA2VKJASSLYZVQAXEJ%2F20210413%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20210413T092954Z&X-Amz-Expires=14400&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHgaCmFwLXNvdXRoLTEiSDBGAiEA76tOdyobQwS5J709lxU7j4qO9YwJfszL2SYrDMADmksCIQCG8huuyr6A9jDCJY3axTLvps%2FpJW01ykEayLoZp6jvaiq%2FAwjR%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAIaDDczMjk4MTkyNTAxNSIMU3TG2XLUQl7Ie04lKpMDq7vIXj9plh2uDrg%2B%2FN0ngWaz%2FckKpNd8fxfdSdqlII%2Fvxc7TYWjBfa0qwlPLwZeFXN4bYT9Y60NciTeUIQd0ztgYL0q1mucF6KfhA5IalA2OOtFbdS2Qu9oQcPpAWnUmMjLOayxqm83cpJ3sqg71WVjsOG1aeEfFJ39RpCOlYvCTsbpuNLm9NLofqf3VzZFJxQRvnx1MS2LyizOxlibOd8oFH%2FEJb6Vt27dZtR7CITLHHWhs6TxLZK4vwXzrOGuYxl0epXY44Nr6JsFjXGPtY5Wx2A4U19Y6Fcp2Irzv4h8O1FVFavagJNYk9nTLZP0u%2By7iSHgJwP2%2FA9%2BwYaimxC7lfj2Jur03h3z%2FzeUYh%2FN337hETjXSxpvoM%2FKomk2BrrWuHo9CHvf67Nd8%2Fj7Yaw7Uu78Z9JhV3NeFItrRYQHCCzwEaqI3KDxbTzWen1pE%2FSnGIM7dtTqHS80U0h3V3ANZLPA9Z7WAzjf0D4aNUl53f7u7m6V6Te130uus6vgfM7FA3RmNj3XxRRJsU1UblT8AjTDYodWDBjrqAUcXgHxuVJcZS2O2ch1m5BG4%2FYAnrzvn%2F911Y0nUPiYlMjlcSAMmUSUVx9wHeDhILAkb6Hh3SN4%2FCTApZRkDs1W%2BS6LOFK2sQ8rpbdzT%2Bz50uU1hPK7mOc5E4XbalqRELjwy294Zf0p7YUniLlJojfTt05bTYDrZsypIj50stYloTV00Rt%2BM9Si3eMQVIT8WKtNIfPXTa8ErCCCOWfH9dstN%2Bq0wP6HiVyEkpMy3V1l%2FQgcgdLaWxthqt4is4YNHc5dk8gm%2B2oLF%2BhE9zZOhoWFf3uDZreVmGf%2FJSjripxvXY1cFnIaQRGQNNw%3D%3D&X-Amz-Signature=de935ffa7cb488b161d6e07516fb70bd6eacc56ccb1be9f09922993546622bcf"
+    // getObject(objFile.uri)
+    getObject('file:///Users/thomasochman/Library/Developer/CoreSimulator/Devices/CDF3C211-DCA8-4209-8AE2-F9296BD7655E/data/Containers/Data/Application/2ABE78FD-B1B8-4D9A-92EE-726481D1A8AC/Library/Caches/ExponentExperienceData/%2540anonymous%252Fimage_modifier-31254159-9369-46fb-9e98-dd860115aacf/5bbfa270-92f5-4c68-829e-07ffdb37f253')
+    return
+    // } catch (error) {
+    //   console.error(error)
+    //   debugger
+    //   return
+    // }
 
     // Request to create measurements
     let params2 = {
@@ -128,20 +131,21 @@ const ObjectReceiver = ({ route, navigation }) => {
     } catch (error) {
       console.log(error)
     }
+  }
 
-
+  const getObject = async (objUrl) => {
     // const object3D = Asset.fromModule(objectImage)
     // const bob = Asset.fromModule(require('../assets/random_dude.obj'));
 
-    // const loader = new OBJLoader();
+    const loader = new OBJLoader();
 
     // await object3D.downloadAsync()
     // await bob.downloadAsync()
 
-    // loader.load(object3D.localUri, objectActual => {
-    //   debugger
-    //   setObjectImage(objectActual)
-    // });
+    loader.load(objUrl, objectActual => {
+      setObjectImage(objectActual)
+      console.warn('second debugger')
+    });
     // loader.load(bob.localUri, bobActual => {
     //   debugger
     //   setObjectImage(bobActual)
@@ -158,12 +162,29 @@ const ObjectReceiver = ({ route, navigation }) => {
         <Text>This is Bob!</Text>
 
         {objectImage &&
+          <GLView
+            style={{ flex: 1 }}
+            onContextCreate={(gl) => {
+              // Create a WebGLRenderer without a DOM element
+              const renderer = new Renderer({ gl });
+              renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
+              const scene = new Scene();
+              scene.add(objectImage);
+            }}
+          />
 
-          <Text> And there is an object Image!</Text>
           // <GLView
           //   style={{ flex: 1 }}
+<<<<<<< HEAD
           //   onContextCreate={async (gl) => {
           //     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;   
+=======
+          //   onContextCreate={async (gl: ExpoWebGLRenderingContext) => {
+          //     debugger
+          //     // const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
+          //     const width = gl.drawingBufferWidth
+          //     const height = gl.drawingBufferHeight
+>>>>>>> dcb58ebc97ff7f2150597bc1761ce9cfcef22634
           //     const sceneColor = 0x6ad6f0;
 
           //     // Create a WebGLRenderer without a DOM element
@@ -176,25 +197,25 @@ const ObjectReceiver = ({ route, navigation }) => {
           //     camera.zoom = 5
           //     const scene = new Scene();
           //     scene.fog = new Fog(sceneColor, 1, 10000);
-          //     // scene.add(new GridHelper(10, 10));
+          //     scene.add(new GridHelper(10, 10));
 
           //     const ambientLight = new AmbientLight(0x101010);
           //     scene.add(ambientLight);
 
           //     const pointLight = new PointLight(0xffffff, 2, 1000, 1);
-          //     pointLight.position.set(0, 200, 200);
+          //     pointLight.position.set(0, 600, 200);
           //     scene.add(pointLight);
 
           //     const spotLight = new SpotLight(0xffffff, 0.5);
-          //     spotLight.position.set(0, 500, 100);
+          //     spotLight.position.set(100, 600, 300);
           //     spotLight.lookAt(scene.position);
           //     scene.add(spotLight);
 
-          //     objectImage.scale.multiplyScalar(4);
-          //     objectImage.rotation.y += 0.5;
+          //     objectImage.scale.multiplyScalar(2.5);
+          //     objectImage.rotation.y -= 0.25;
           //     scene.add(objectImage);
           //     console.log(objectImage.position)
-          //     camera.lookAt(0, 0, 0);
+          //     camera.lookAt(0, 2, 0);
 
           //     function update() {
           //       //  objectImage.rotation.y += 0.05;
