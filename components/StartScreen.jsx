@@ -7,7 +7,7 @@ import vitruvian from '../assets/images/vitruvian.png'
 const StartScreen = ({ navigation }) => {
   return (
     <View style={globals.container}>
-      <TouchableOpacity style={styles.backdrop} onPress={() => navigation.navigate('Measurements')}>
+      <TouchableOpacity style={styles.backdrop} onPress={() => navigation.navigate('Info')}>
         <Image source={vitruvian} style={styles.image} />
         <Text style={styles.title}>Measure your body</Text>
       </TouchableOpacity>

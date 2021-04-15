@@ -175,16 +175,11 @@ const ObjectReceiver = ({ route, navigation }) => {
 
           // <GLView
           //   style={{ flex: 1 }}
-<<<<<<< HEAD
-          //   onContextCreate={async (gl) => {
-          //     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;   
-=======
           //   onContextCreate={async (gl: ExpoWebGLRenderingContext) => {
           //     debugger
           //     // const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
           //     const width = gl.drawingBufferWidth
           //     const height = gl.drawingBufferHeight
->>>>>>> dcb58ebc97ff7f2150597bc1761ce9cfcef22634
           //     const sceneColor = 0x6ad6f0;
 
           //     // Create a WebGLRenderer without a DOM element

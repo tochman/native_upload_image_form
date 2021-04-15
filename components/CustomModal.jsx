@@ -14,8 +14,6 @@ const CustomModal = ({ open, setOpen, data }) => {
       animationType='slide'
       transparent={true}
     >
-
-
       <View style={styles.modalContent}>
 
         {data && <Text style={{ fontSize: 20 }}>Height: {data.height} cm.</Text>}
@@ -23,8 +21,6 @@ const CustomModal = ({ open, setOpen, data }) => {
         <StandardButton title='Go back' onPress={closesModal} />
 
       </View>
-
-
     </Modal>
   )
 }
@@ -47,6 +43,6 @@ const styles = StyleSheet.create({
     height: '70%',
     width: '80%',
     marginTop: 20,
-    transform: [{rotateZ: '180deg'}]
+    transform: [{ rotateZ: '180deg' }]
   }
 })

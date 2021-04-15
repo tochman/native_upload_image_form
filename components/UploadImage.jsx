@@ -9,7 +9,7 @@ const UploadImage = ({ route, navigation }) => {
   const [photo, setPhoto] = useState()
 
   const sendData = () => {
-    navigation.navigate('3D Receiver', { data: { height, photo } })
+    navigation.navigate('Measurements', { data: { height, photo } })
   }
 
   return (

@@ -1,0 +1,1450 @@
+{
+  "statusCode": 200,
+  "body": {
+    "result": {
+      "metrics": {
+        "girths": [
+          {
+            "id": 1101,
+            "label": "Head Start Contoured",
+            "girth": [],
+            "level": 1.7538923195365221,
+            "confidence": 0
+          },
+          {
+            "id": 1102,
+            "label": "Head End Contoured",
+            "girth": [
+              0.38
+            ],
+            "level": 1.4991057799566314,
+            "confidence": 90
+          },
+          {
+            "id": 102,
+            "label": "Head End",
+            "girth": [
+              0.38
+            ],
+            "level": 1.4991057799566314,
+            "confidence": 90
+          },
+          {
+            "id": 1103,
+            "label": "Neck End Contoured",
+            "girth": [
+              0.6
+            ],
+            "level": 1.457922990614734,
+            "confidence": 90
+          },
+          {
+            "id": 103,
+            "label": "Neck End",
+            "girth": [
+              0.59
+            ],
+            "level": 1.457922990614734,
+            "confidence": 90
+          },
+          {
+            "id": 1104,
+            "label": "Shoulder Contoured",
+            "girth": [
+              1.01
+            ],
+            "level": 1.3987291248303764,
+            "confidence": 90
+          },
+          {
+            "id": 104,
+            "label": "Shoulder",
+            "girth": [
+              1.01
+            ],
+            "level": 1.3987291248303764,
+            "confidence": 90
+          },
+          {
+            "id": 1126,
+            "label": "Right Biceps Contoured",
+            "girth": [
+              0.31
+            ],
+            "level": 1.2083153632669292,
+            "confidence": 90
+          },
+          {
+            "id": 126,
+            "label": "Right Biceps",
+            "girth": [
+              0.31
+            ],
+            "level": 1.2083153632669292,
+            "confidence": 90
+          },
+          {
+            "id": 1125,
+            "label": "Left Biceps Contoured",
+            "girth": [
+              0.31
+            ],
+            "level": 1.2216900243634823,
+            "confidence": 90
+          },
+          {
+            "id": 125,
+            "label": "Left Biceps",
+            "girth": [
+              0.31
+            ],
+            "level": 1.2216900243634823,
+            "confidence": 90
+          },
+          {
+            "id": 1122,
+            "label": "Right Forearm Contoured",
+            "girth": [
+              0.25
+            ],
+            "level": 0.9975092931835128,
+            "confidence": 90
+          },
+          {
+            "id": 122,
+            "label": "Right Forearm",
+            "girth": [
+              0.25
+            ],
+            "level": 0.9975092931835128,
+            "confidence": 90
+          },
+          {
+            "id": 1124,
+            "label": "Left Forearm Contoured",
+            "girth": [
+              0.23
+            ],
+            "level": 1.0208860444162935,
+            "confidence": 90
+          },
+          {
+            "id": 124,
+            "label": "Left Forearm",
+            "girth": [
+              0.23
+            ],
+            "level": 1.0208860444162935,
+            "confidence": 90
+          },
+          {
+            "id": 1121,
+            "label": "Right Wrist Contoured",
+            "girth": [
+              0.2
+            ],
+            "level": 0.8813924002077475,
+            "confidence": 90
+          },
+          {
+            "id": 121,
+            "label": "Right Wrist",
+            "girth": [
+              0.2
+            ],
+            "level": 0.8813924002077475,
+            "confidence": 90
+          },
+          {
+            "id": 1123,
+            "label": "Left Wrist Contoured",
+            "girth": [
+              0.19
+            ],
+            "level": 0.9120028064599545,
+            "confidence": 90
+          },
+          {
+            "id": 123,
+            "label": "Left Wrist",
+            "girth": [
+              0.19
+            ],
+            "level": 0.9120028064599545,
+            "confidence": 90
+          },
+          {
+            "id": 1105,
+            "label": "Chest Contoured",
+            "girth": [
+              1.02
+            ],
+            "level": 1.3059059236651427,
+            "confidence": 90
+          },
+          {
+            "id": 105,
+            "label": "Chest",
+            "girth": [
+              1.01
+            ],
+            "level": 1.3059059236651427,
+            "confidence": 90
+          },
+          {
+            "id": 1143,
+            "label": "Upper Chest Girth Contoured",
+            "girth": [
+              1.02
+            ],
+            "level": 1.2803413932616612,
+            "confidence": 90
+          },
+          {
+            "id": 143,
+            "label": "Upper Chest Girth",
+            "girth": [
+              1.01
+            ],
+            "level": 1.2803413932616612,
+            "confidence": 90
+          },
+          {
+            "id": 1106,
+            "label": "Under Bust Contoured",
+            "girth": [
+              1
+            ],
+            "level": 1.2836875780363646,
+            "confidence": 90
+          },
+          {
+            "id": 106,
+            "label": "Under Bust",
+            "girth": [
+              0.99
+            ],
+            "level": 1.2836875780363646,
+            "confidence": 90
+          },
+          {
+            "id": 1107,
+            "label": "Belly Contoured",
+            "girth": [
+              0.83
+            ],
+            "level": 0.9955539928289592,
+            "confidence": 90
+          },
+          {
+            "id": 107,
+            "label": "Belly",
+            "girth": [
+              0.83
+            ],
+            "level": 0.9955539928289592,
+            "confidence": 90
+          },
+          {
+            "id": 1108,
+            "label": "Waist Contoured",
+            "girth": [
+              0.8
+            ],
+            "level": 1.0693905374557415,
+            "confidence": 90
+          },
+          {
+            "id": 108,
+            "label": "Waist",
+            "girth": [
+              0.8
+            ],
+            "level": 1.0693905374557415,
+            "confidence": 90
+          },
+          {
+            "id": 1145,
+            "label": "Natural Waist Contoured",
+            "girth": [
+              0.82
+            ],
+            "level": 1.0693905374557415,
+            "confidence": 90
+          },
+          {
+            "id": 145,
+            "label": "Natural Waist",
+            "girth": [
+              0.82
+            ],
+            "level": 1.0693905374557415,
+            "confidence": 90
+          },
+          {
+            "id": 1109,
+            "label": "Butt Contoured",
+            "girth": [
+              0.93
+            ],
+            "level": 0.8971052666599162,
+            "confidence": 90
+          },
+          {
+            "id": 109,
+            "label": "Butt",
+            "girth": [
+              0.93
+            ],
+            "level": 0.8971052666599162,
+            "confidence": 90
+          },
+          {
+            "id": 1112,
+            "label": "Right Mid Thigh Contoured",
+            "girth": [
+              0.36
+            ],
+            "level": 0.5544813831884147,
+            "confidence": 90
+          },
+          {
+            "id": 112,
+            "label": "Right Mid Thigh",
+            "girth": [
+              0.36
+            ],
+            "level": 0.5544813831884147,
+            "confidence": 90
+          },
+          {
+            "id": 1127,
+            "label": "Neck Base Contoured",
+            "girth": [
+              0.47
+            ],
+            "level": 1.456271919840983,
+            "confidence": 90
+          },
+          {
+            "id": 127,
+            "label": "Neck Base",
+            "girth": [
+              0.47
+            ],
+            "level": 1.456271919840983,
+            "confidence": 90
+          },
+          {
+            "id": 1140,
+            "label": "Neck Contoured",
+            "girth": [
+              0.36
+            ],
+            "level": 1.471188256788164,
+            "confidence": 90
+          },
+          {
+            "id": 140,
+            "label": "Neck",
+            "girth": [
+              0.36
+            ],
+            "level": 1.471188256788164,
+            "confidence": 90
+          },
+          {
+            "id": 1144,
+            "label": "Bust Contoured",
+            "girth": [
+              1.01
+            ],
+            "level": 1.2987232542977862,
+            "confidence": 90
+          },
+          {
+            "id": 144,
+            "label": "Bust",
+            "girth": [
+              1.01
+            ],
+            "level": 1.2987232542977862,
+            "confidence": 90
+          },
+          {
+            "id": 1150,
+            "label": "Waist ATS Contoured",
+            "girth": [
+              0.81
+            ],
+            "level": 1.0693905374557415,
+            "confidence": 90
+          },
+          {
+            "id": 150,
+            "label": "Waist ATS",
+            "girth": [
+              0.81
+            ],
+            "level": 1.0693905374557415,
+            "confidence": 90
+          },
+          {
+            "id": 1149,
+            "label": "Belly ATS Contoured",
+            "girth": [
+              0.82
+            ],
+            "level": 0.9955539928289592,
+            "confidence": 90
+          },
+          {
+            "id": 149,
+            "label": "Belly ATS",
+            "girth": [
+              0.82
+            ],
+            "level": 0.9955539928289592,
+            "confidence": 90
+          },
+          {
+            "id": 1147,
+            "label": "Bust ATS Contoured",
+            "girth": [
+              1
+            ],
+            "level": 1.2987232542977862,
+            "confidence": 90
+          },
+          {
+            "id": 147,
+            "label": "Bust ATS",
+            "girth": [
+              0.99
+            ],
+            "level": 1.2987232542977862,
+            "confidence": 90
+          },
+          {
+            "id": 1148,
+            "label": "Under Bust ATS Contoured",
+            "girth": [
+              0.99
+            ],
+            "level": 1.2836875780363646,
+            "confidence": 90
+          },
+          {
+            "id": 148,
+            "label": "Under Bust ATS",
+            "girth": [
+              0.99
+            ],
+            "level": 1.2836875780363646,
+            "confidence": 90
+          },
+          {
+            "id": 1146,
+            "label": "Chest ATS Contoured",
+            "girth": [
+              1.02
+            ],
+            "level": 0,
+            "confidence": 90
+          },
+          {
+            "id": 146,
+            "label": "Chest ATS",
+            "girth": [
+              1.01
+            ],
+            "level": 0,
+            "confidence": 90
+          },
+          {
+            "id": 1114,
+            "label": "Left Knee Contoured",
+            "level": 0.5183523432402373,
+            "girth": [
+              0.3599910023475151
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1113,
+            "label": "Right Knee Contoured",
+            "level": 0.5193927582743969,
+            "girth": [
+              0.34840492950251156
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1117,
+            "label": "Left Ankle Contoured",
+            "level": 0.17010394873263268,
+            "girth": [
+              0.2541505914543822
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1118,
+            "label": "Right Ankle Contoured",
+            "level": 0.18536494809719983,
+            "girth": [
+              0.23596217209968964
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1130,
+            "label": "Left Foot Waist Contoured",
+            "level": 0.17010394873263268,
+            "girth": [
+              0.25254204522012075
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1128,
+            "label": "Left Foot Ball Contoured",
+            "level": 0.17010394873263268,
+            "girth": [
+              0.23279293443069002
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1134,
+            "label": "Left Foot Heel Contoured",
+            "level": 0.17010394873263268,
+            "girth": [
+              0.42740838644913187
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1133,
+            "label": "Right Foot Instep Contoured",
+            "level": 0.18536494809719983,
+            "girth": [
+              0.2902377573218339
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1131,
+            "label": "Right Foot Waist Contoured",
+            "level": 0.18536494809719983,
+            "girth": [
+              0.2523015822946863
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1129,
+            "label": "Right Foot Ball Contoured",
+            "level": 0.18536494809719983,
+            "girth": [
+              0.2351090006779657
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1135,
+            "label": "Right Foot Heel Contoured",
+            "level": 0.18536494809719983,
+            "girth": [
+              0.3902018576798735
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1115,
+            "label": "Left Mid Calf Contoured",
+            "level": 0.34422814598643536,
+            "girth": [
+              0.29614243026225173
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1136,
+            "label": "Left Calf Contoured",
+            "level": 0.40471913320896524,
+            "girth": [
+              0.3329063843491108
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1116,
+            "label": "Right Mid Calf Contoured",
+            "level": 0.35237885318579776,
+            "girth": [
+              0.30518331832330137
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1137,
+            "label": "Right Calf Contoured",
+            "level": 0.4219414620088939,
+            "girth": [
+              0.34950721795363565
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 1139,
+            "label": "Right Minimum Leg Girth Contoured",
+            "level": 0.23109834929701056,
+            "girth": [
+              0.232096446323985
+            ],
+            "confidence": 90
+          },
+          {
+            "id": 114,
+            "label": "Left Knee",
+            "level": 0.5183523432402373,
+            "confidence": 90,
+            "girth": [
+              0.3591393599670045
+            ]
+          },
+          {
+            "id": 113,
+            "label": "Right Knee",
+            "level": 0.5193927582743969,
+            "confidence": 90,
+            "girth": [
+              0.3481666480003607
+            ]
+          },
+          {
+            "id": 117,
+            "label": "Left Ankle",
+            "level": 0.17010394873263268,
+            "confidence": 90,
+            "girth": [
+              0.2540946117585871
+            ]
+          },
+          {
+            "id": 118,
+            "label": "Right Ankle",
+            "level": 0.18536494809719983,
+            "confidence": 90,
+            "girth": [
+              0.23590092354623057
+            ]
+          },
+          {
+            "id": 130,
+            "label": "Left Foot Waist",
+            "level": 0.17010394873263268,
+            "confidence": 90,
+            "girth": [
+              0.2519853719918437
+            ]
+          },
+          {
+            "id": 128,
+            "label": "Left Foot Ball",
+            "level": 0.17010394873263268,
+            "confidence": 90,
+            "girth": [
+              0.2327468098933507
+            ]
+          },
+          {
+            "id": 134,
+            "label": "Left Foot Heel",
+            "level": 0.17010394873263268,
+            "confidence": 90,
+            "girth": [
+              0.4196094166096323
+            ]
+          },
+          {
+            "id": 133,
+            "label": "Right Foot Instep",
+            "level": 0.18536494809719983,
+            "confidence": 90,
+            "girth": [
+              0.2778994294094078
+            ]
+          },
+          {
+            "id": 131,
+            "label": "Right Foot Waist",
+            "level": 0.18536494809719983,
+            "confidence": 90,
+            "girth": [
+              0.25162170160427294
+            ]
+          },
+          {
+            "id": 129,
+            "label": "Right Foot Ball",
+            "level": 0.18536494809719983,
+            "confidence": 90,
+            "girth": [
+              0.2344752654185061
+            ]
+          },
+          {
+            "id": 135,
+            "label": "Right Foot Heel",
+            "level": 0.18536494809719983,
+            "confidence": 90,
+            "girth": [
+              0.388568886911855
+            ]
+          },
+          {
+            "id": 115,
+            "label": "Left Mid Calf",
+            "level": 0.34422814598643536,
+            "confidence": 90,
+            "girth": [
+              0.29602920623170637
+            ]
+          },
+          {
+            "id": 136,
+            "label": "Left Calf",
+            "level": 0.40471913320896524,
+            "confidence": 90,
+            "girth": [
+              0.33232387035892386
+            ]
+          },
+          {
+            "id": 116,
+            "label": "Right Mid Calf",
+            "level": 0.35237885318579776,
+            "confidence": 90,
+            "girth": [
+              0.30500862349985713
+            ]
+          },
+          {
+            "id": 137,
+            "label": "Right Calf",
+            "level": 0.4219414620088939,
+            "confidence": 90,
+            "girth": [
+              0.3493531219197183
+            ]
+          },
+          {
+            "id": 139,
+            "label": "Right Minimum Leg Girth",
+            "level": 0.23109834929701056,
+            "confidence": 90,
+            "girth": [
+              0.2320631968780553
+            ]
+          }
+        ],
+        "landmarkPoints": [
+          {
+            "position": {
+              "x": -0.019044883091780776,
+              "y": 0.7089712091297394,
+              "z": 0.11481734631381464
+            },
+            "id": 201,
+            "refid": "Iso-8559-Nose",
+            "label": "Nose Point",
+            "level": 1.5859173688980004
+          },
+          {
+            "position": {
+              "x": -0.019144187571076623,
+              "y": 0.6387339026079903,
+              "z": 0.08926209466379605
+            },
+            "id": 202,
+            "refid": "Iso-8559-1-3-1-5",
+            "label": "Lowest Point Of Chin",
+            "level": 1.5156800623762514
+          },
+          {
+            "position": {
+              "x": -0.016031406109852955,
+              "y": 0.5793257600727219,
+              "z": 0.030561037245826806
+            },
+            "id": 203,
+            "refid": "Iso-8559-1-3-1-8",
+            "label": "Front Neck Point",
+            "level": 1.456271919840983
+          },
+          {
+            "position": {
+              "x": -0.013285158444562014,
+              "y": 0.49156476467670324,
+              "z": 0.06876736719929387
+            },
+            "id": 204,
+            "refid": "Iso-8559-1-3-1-12",
+            "label": "Centre Chest Point",
+            "level": 1.3685109244449642
+          },
+          {
+            "position": {
+              "x": -0.08973037667925073,
+              "y": 0.4251701184020239,
+              "z": 0.0790931681240731
+            },
+            "id": 205,
+            "refid": "Iso-8559-1-3-1-11r",
+            "label": "Right Bust Point",
+            "level": 1.3021162781702849
+          },
+          {
+            "position": {
+              "x": 0.08581549820321595,
+              "y": 0.42177709452952505,
+              "z": 0.10105246811215593
+            },
+            "id": 206,
+            "refid": "Iso-8559-1-3-1-11l",
+            "label": "Left Bust Point",
+            "level": 1.2987232542977862
+          },
+          {
+            "position": {
+              "x": -0.09362592083531801,
+              "y": 0.025072475006817824,
+              "z": -0.11857334677365448
+            },
+            "id": 207,
+            "refid": "Iso-8559-RightHipPoint",
+            "label": "Right Hip Point",
+            "level": 0.9020186347750789
+          },
+          {
+            "position": {
+              "x": 0.06460511910553982,
+              "y": 0.015245738776492487,
+              "z": -0.10752364454176527
+            },
+            "id": 208,
+            "refid": "Iso-8559-LeftHipPoint",
+            "label": "Left Hip Point",
+            "level": 0.8921918985447536
+          },
+          {
+            "position": {
+              "x": -0.016738625008915403,
+              "y": 0.609158433967084,
+              "z": 0.03866366220339875
+            },
+            "id": 209,
+            "refid": "Iso-8559-1-3-1-9",
+            "label": "Adam's Apple Point",
+            "level": 1.486104593735345
+          },
+          {
+            "position": {
+              "x": 0.18293797694479183,
+              "y": 0.5508910524978358,
+              "z": -0.008858537379316737
+            },
+            "id": 210,
+            "refid": "Iso-8559-1-3-1-1l",
+            "label": "Left Shoulder Point",
+            "level": 1.427837212266097
+          },
+          {
+            "position": {
+              "x": -0.19821314658203565,
+              "y": 0.5283289842196702,
+              "z": -0.06061869143973292
+            },
+            "id": 211,
+            "refid": "Iso-8559-1-3-1-1r",
+            "label": "Right Shoulder Point",
+            "level": 1.4052751439879314
+          },
+          {
+            "position": {
+              "x": 0.04530458949371685,
+              "y": 0.7411944073013849,
+              "z": 0.0342825150433371
+            },
+            "id": 212,
+            "refid": "Iso-8559-1-3-1-3l",
+            "label": "Left Tragion Point",
+            "level": 1.6181405670696458
+          },
+          {
+            "position": {
+              "x": -0.08749375958935889,
+              "y": 0.7411944073013849,
+              "z": 0.0251140772258702
+            },
+            "id": 213,
+            "refid": "Iso-8559-1-3-1-3rl",
+            "label": "Right Tragion Point",
+            "level": 1.6181405670696458
+          },
+          {
+            "position": {
+              "x": -0.019342015325072997,
+              "y": 0.7662281976911389,
+              "z": 0.09987249870771597
+            },
+            "id": 214,
+            "refid": "Iso-8559-1-3-1-2",
+            "label": "Centre Point Of Brow Ridge",
+            "level": 1.6431743574594
+          },
+          {
+            "position": {
+              "x": -0.05326932134056983,
+              "y": 0.7429006630529239,
+              "z": 0.08689003766035264
+            },
+            "id": 215,
+            "refid": "Iso-8559-1-3-1-4r",
+            "label": "Right Orbital Point",
+            "level": 1.6198468228211849
+          },
+          {
+            "position": {
+              "x": 0.013129853200968038,
+              "y": 0.7439666256652866,
+              "z": 0.08109313871037349
+            },
+            "id": 216,
+            "refid": "Iso-8559-1-3-1-4l",
+            "label": "Left Orbital Point",
+            "level": 1.6209127854335477
+          },
+          {
+            "position": {
+              "x": -0.09826365311815871,
+              "y": 0.5794727109030816,
+              "z": -0.033516246485966864
+            },
+            "id": 217,
+            "refid": "Iso-8559-1-3-1-7r",
+            "label": "Right Side Neck Point",
+            "level": 1.4564188706713428
+          },
+          {
+            "position": {
+              "x": 0.060287661904274044,
+              "y": 0.6060994311735948,
+              "z": -0.03304347182730726
+            },
+            "id": 218,
+            "refid": "Iso-8559-1-3-1-7l",
+            "label": "Left Side Neck Point",
+            "level": 1.4830455909418558
+          },
+          {
+            "position": {
+              "x": 0.02131797943158666,
+              "y": 0.653371741256199,
+              "z": -0.05386831300054612
+            },
+            "id": 219,
+            "refid": "Iso-8559-1-3-1-6",
+            "label": "Back Neck Point",
+            "level": 1.53031790102446
+          },
+          {
+            "position": {
+              "x": -0.24081456204079935,
+              "y": -0.017920265344504242,
+              "z": 0.04812942657978858
+            },
+            "id": 220,
+            "refid": "Iso-8559-1-3-1-19r",
+            "label": "Right Wrist Point",
+            "level": 0.8590258944237569
+          },
+          {
+            "position": {
+              "x": 0.2732202475765424,
+              "y": 0.010472708283962651,
+              "z": 0.0907036091964785
+            },
+            "id": 221,
+            "refid": "Iso-8559-1-3-1-19l",
+            "label": "Left Wrist Point",
+            "level": 0.8874188680522237
+          },
+          {
+            "position": {
+              "x": -0.22190157411607933,
+              "y": 0.1992033261312903,
+              "z": -0.06833858417648632
+            },
+            "id": 222,
+            "refid": "Iso-8559-1-3-1-10r",
+            "label": "Right Elbow Point",
+            "level": 1.0761494858995513
+          },
+          {
+            "position": {
+              "x": 0.24926202179582016,
+              "y": 0.2047197470387281,
+              "z": -0.057132395396739886
+            },
+            "id": 223,
+            "refid": "Iso-8559-1-3-1-10l",
+            "label": "Left Elbow Point",
+            "level": 1.0816659068069892
+          },
+          {
+            "position": {
+              "x": 0.16183767707615873,
+              "y": 0.42895976389688173,
+              "z": 0.018828911276708077
+            },
+            "id": 228,
+            "refid": "Iso-8559-1-3-1-13l",
+            "label": "Left Armpit Front Fold Point",
+            "level": 1.3059059236651427
+          },
+          {
+            "position": {
+              "x": -0.1728039134361334,
+              "y": 0.42895976389688173,
+              "z": 0.006720962250018604
+            },
+            "id": 229,
+            "refid": "Iso-8559-1-3-1-13r",
+            "label": "Right Armpit Front Fold Point",
+            "level": 1.3059059236651427
+          },
+          {
+            "position": {
+              "x": 0.17562508744733066,
+              "y": 0.42895976389688173,
+              "z": -0.0837690916384123
+            },
+            "id": 230,
+            "refid": "Iso-8559-1-3-1-14l",
+            "label": "Left Armpit Back Fold Point",
+            "level": 1.3059059236651427
+          },
+          {
+            "position": {
+              "x": -0.15334302136393269,
+              "y": 0.42895976389688173,
+              "z": -0.14591863040939668
+            },
+            "id": 231,
+            "refid": "Iso-8559-1-3-1-14r",
+            "label": "Right Armpit Back Fold Point",
+            "level": 1.3059059236651427
+          },
+          {
+            "position": {
+              "x": 0.10822355884574471,
+              "y": -0.35859381652802375,
+              "z": 0.050222963252406036
+            },
+            "id": 227,
+            "refid": "Iso-8559-1-3-1-17l",
+            "label": "Centre Point of Left Knee Cap",
+            "level": 0.5183523432402373
+          },
+          {
+            "position": {
+              "x": -0.11495860174453192,
+              "y": -0.35755340149386416,
+              "z": 0.052848344603453265
+            },
+            "id": 226,
+            "refid": "Iso-8559-1-3-1-17r",
+            "label": "Centre Point of Right Knee Cap",
+            "level": 0.5193927582743969
+          },
+          {
+            "position": {
+              "x": 0.1661355988473697,
+              "y": -0.7068422110356284,
+              "z": -0.10998929957205084
+            },
+            "id": 225,
+            "refid": "Iso-8559-1-3-1-18l",
+            "label": "Left Outer Ankle Point",
+            "level": 0.17010394873263268
+          },
+          {
+            "position": {
+              "x": 0.13881111884119354,
+              "y": -0.7749036915295463,
+              "z": -0.17812390453151614
+            },
+            "id": 232,
+            "refid": "Iso-8559-LeftHeelPoint",
+            "label": "Left Heel Point",
+            "level": 0.10204246823871477
+          },
+          {
+            "position": {
+              "x": 0.07068724668759087,
+              "y": -0.8103181436732715,
+              "z": 0.0727467185033365
+            },
+            "id": 234,
+            "refid": "Iso-8559-LeftFrontFootPoint",
+            "label": "Left Front Foot Point",
+            "level": 0.06662801609498958
+          },
+          {
+            "position": {
+              "x": -0.1819883678869703,
+              "y": -0.6915812116710612,
+              "z": -0.004381384350093699
+            },
+            "id": 224,
+            "refid": "Iso-8559-1-3-1-18r",
+            "label": "Right Outer Ankle Point",
+            "level": 0.18536494809719983
+          },
+          {
+            "position": {
+              "x": -0.12577464157950147,
+              "y": -0.7600292429165116,
+              "z": -0.062402602286523355
+            },
+            "id": 233,
+            "refid": "Iso-8559-RightHeelPoint",
+            "label": "Right Heel Point",
+            "level": 0.11691691685174943
+          },
+          {
+            "position": {
+              "x": -0.28174353078148684,
+              "y": -0.7799242790439944,
+              "z": 0.1486379927993257
+            },
+            "id": 235,
+            "refid": "Iso-8559-RightFrontFootPoint",
+            "label": "Right Front Foot Point",
+            "level": 0.09702188072426665
+          }
+        ],
+        "surfaceLengths": [
+          {
+            "id": 301,
+            "refid": "Iso-8559-1-5-4-1l",
+            "label": "Left Shoulder Length",
+            "length": 0.140234
+          },
+          {
+            "id": 302,
+            "refid": "Iso-8559-1-5-4-1r",
+            "label": "Right Shoulder Length",
+            "length": 0.117329
+          },
+          {
+            "id": 303,
+            "refid": "Iso-8559-1-5-4-2",
+            "label": "Back Shoulder Width",
+            "length": 0.434402
+          },
+          {
+            "id": 304,
+            "refid": "3dmu-3.1l",
+            "label": "Left Shoulder-Underbust",
+            "length": 0.255211
+          },
+          {
+            "id": 305,
+            "refid": "3dmu-3.1r",
+            "label": "Right Shoulder-Underbust",
+            "length": 0.213865
+          },
+          {
+            "id": 306,
+            "refid": "3dmu-3.2",
+            "label": "Underbust-Hip",
+            "length": 0.388773
+          },
+          {
+            "id": 307,
+            "refid": "Iso-8559-1-5-4-18",
+            "label": "Total Crotch Length",
+            "length": 0.942109
+          },
+          {
+            "id": 1307,
+            "refid": "Iso-8559-1-5-4-18",
+            "label": "Total Crotch Length Contoured",
+            "length": 0.934502
+          },
+          {
+            "id": 308,
+            "refid": "Iso-8559-1-5-4-6",
+            "label": "Scye Depth Length",
+            "length": 0.245691
+          },
+          {
+            "id": 309,
+            "refid": "Iso-8559-1-5-4-5",
+            "label": "Back Neck Point To Waist",
+            "length": 0.48527
+          },
+          {
+            "id": 310,
+            "refid": "Iso-8559-1-5-4-8",
+            "label": "Front Neck Point To Waist",
+            "length": 0.402895
+          },
+          {
+            "id": 311,
+            "refid": "Iso-8559-1-5-4-21l",
+            "label": "Left Side Waist To Hip",
+            "length": 0.176149
+          },
+          {
+            "id": 312,
+            "refid": "Iso-8559-1-5-4-21r",
+            "label": "Right Side Waist To Hip",
+            "length": 0.178487
+          },
+          {
+            "id": 313,
+            "refid": "Iso-8559-1-5-4-21l",
+            "label": "Left Side Neck Point To Bust Point",
+            "length": 0.24012
+          },
+          {
+            "id": 314,
+            "refid": "Iso-8559-1-5-4-21r",
+            "label": "Right Side Neck Point To Bust Point",
+            "length": 0.197446
+          },
+          {
+            "id": 315,
+            "refid": "Iso-8559-1-5-4-11l",
+            "label": "Left Side Neck Point To Waist Level",
+            "length": 0.469663
+          },
+          {
+            "id": 316,
+            "refid": "Iso-8559-1-5-4-11r",
+            "label": "Right Side Neck Point To Waist Level",
+            "length": 0.430269
+          },
+          {
+            "id": 317,
+            "refid": "Iso-8559-1-5-4-12l",
+            "label": "Back Neck Point To Left Bust Point",
+            "length": 0.306001
+          },
+          {
+            "id": 318,
+            "refid": "Iso-8559-1-5-4-12r",
+            "label": "Back Neck Point To Right Bust Point",
+            "length": 0.357751
+          },
+          {
+            "id": 319,
+            "refid": "Iso-8559-1-5-4-13l",
+            "label": "Back Neck Point To Waist Level Left",
+            "length": 0.535543
+          },
+          {
+            "id": 320,
+            "refid": "Iso-8559-1-5-4-13r",
+            "label": "Back Neck Point To Waist Level Right",
+            "length": 0.590575
+          },
+          {
+            "id": 321,
+            "refid": "Iso-8559-1-5-4-14l",
+            "label": "Left Upper Arm Length",
+            "length": 0.401594
+          },
+          {
+            "id": 322,
+            "refid": "Iso-8559-1-5-4-14r",
+            "label": "Right Upper Arm Length",
+            "length": 0.364737
+          },
+          {
+            "id": 323,
+            "refid": "Iso-8559-1-5-4-15l",
+            "label": "Left Lower Arm Length",
+            "length": 0.251724
+          },
+          {
+            "id": 324,
+            "refid": "Iso-8559-1-5-4-15r",
+            "label": "Right Lower Arm Length",
+            "length": 0.249439
+          },
+          {
+            "id": 325,
+            "refid": "Iso-8559-1-5-7-8l",
+            "label": "Left Outer Arm Length",
+            "length": 0.653318
+          },
+          {
+            "id": 326,
+            "refid": "Iso-8559-1-5-7-8r",
+            "label": "Right Outer Arm Length",
+            "length": 0.614176
+          },
+          {
+            "id": 327,
+            "refid": "Iso-8559-1-5-7-2",
+            "label": "Back Neck Point To Knee",
+            "length": 1.037559
+          },
+          {
+            "id": 328,
+            "refid": "Iso-8559-1-5-4-23",
+            "label": "Back Neck Point To Ground",
+            "length": 1.556432
+          },
+          {
+            "id": 329,
+            "refid": "3dmu-3.3f",
+            "label": "Front Chest Width",
+            "length": 0.412606
+          },
+          {
+            "id": 330,
+            "refid": "3dmu-3.3b",
+            "label": "Back Chest Width",
+            "length": 0.344492
+          },
+          {
+            "id": 331,
+            "refid": "3dmu-3.4r",
+            "label": "Right Side Neck Point To Belly Button",
+            "length": 0.535787
+          },
+          {
+            "id": 332,
+            "refid": "3dmu-3.4l",
+            "label": "Left Side Neck Point To Belly Button",
+            "length": 0.569819
+          },
+          {
+            "id": 333,
+            "refid": "3dmu-3.5r",
+            "label": "Right Side Mid Belly Hip To Ground",
+            "length": 0.946557
+          },
+          {
+            "id": 334,
+            "refid": "3dmu-3.5l",
+            "label": "Left Side Mid Belly Hip To Ground",
+            "length": 0.956142
+          },
+          {
+            "id": 335,
+            "refid": "3dmu-3.6r",
+            "label": "Right Side Pant Inseam",
+            "length": 0.591287
+          },
+          {
+            "id": 336,
+            "refid": "3dmu-3.6l",
+            "label": "Left Side Pant Inseam",
+            "length": 0.618766
+          },
+          {
+            "id": 341,
+            "refid": "3dmu-3.7r",
+            "label": "Right Side Mid Belly Hip To Ankle",
+            "length": 0.756231
+          },
+          {
+            "id": 342,
+            "refid": "3dmu-3.7l",
+            "label": "Left Side Mid Belly Hip To Ankle",
+            "length": 0.771281
+          },
+          {
+            "id": 343,
+            "refid": "3dmu-3.8r",
+            "label": "Right Side Pant Inseam Upto Ankle",
+            "length": 0.401842
+          },
+          {
+            "id": 344,
+            "refid": "3dmu-3.8l",
+            "label": "Left Side Pant Inseam Upto Ankle",
+            "length": 0.447868
+          },
+          {
+            "id": 338,
+            "refid": "Iso-8559-1-5-5-5l",
+            "label": "Left Foot Length"
+          },
+          {
+            "id": 340,
+            "refid": "Iso-8559-1-5-5-6l",
+            "label": "Left Foot Width"
+          },
+          {
+            "id": 337,
+            "refid": "Iso-8559-1-5-5-5r",
+            "label": "Right Foot Length"
+          },
+          {
+            "id": 339,
+            "refid": "Iso-8559-1-5-5-6r",
+            "label": "Right Foot Width"
+          }
+        ],
+        "girthsConfidence": 88.91566265060241,
+        "skippedMeasurements": [
+          "[1110] : Crotch Contoured",
+          "[110] : Crotch",
+          "[1111] : Left Mid Thigh Contoured",
+          "[111] : Left Mid Thigh",
+          "[1141] : Left Thigh Contoured",
+          "[141] : Left Thigh",
+          "[1142] : Right Thigh Contoured",
+          "[142] : Right Thigh",
+          "[1138] : Left Minimum Leg Girth Contoured",
+          "[138] : Left Minimum Leg Girth",
+          "[236] : Crotch Point"
+        ]
+      },
+      "bodyType": "FullBody"
+    }
+  },
+  "auto_align": true,
+  "auto_orientation_matrix": [
+    0.9880410977790052,
+    0.010730716181469403,
+    -0.15381690684021387,
+    0,
+    -0.016982166145385627,
+    0.9990797500263817,
+    -0.039386026966847745,
+    0,
+    0.15325271655885517,
+    0.04152715758940756,
+    0.9873140837898929,
+    0,
+    -0.009445922445293825,
+    0.0016854308666039985,
+    0.013081081379719306,
+    1
+  ],
+  "others": {
+    "volume": 0.06729109361632758,
+    "height": 1.7538923195365221
+  },
+  "file": "https://3dmu-development-space.s3.amazonaws.com/PIFuHD/ZgUtyw39S4oNca6AYcqaAe.obj?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA2VKJASSL2YD2R6EY%2F20210412%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20210412T184134Z&X-Amz-Expires=14400&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEGoaCmFwLXNvdXRoLTEiRzBFAiEArZ8xhL%2B8uZDHdxRMk%2Bgs7SgzvMKGE3ZWobzfbWryG1oCICetMFmVvlm2CSyDc7cpu%2BWIs75QoKAzXPPFSAPvBtXKKr8DCMP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQAhoMNzMyOTgxOTI1MDE1IgzYtjXXpaJNf3MPvpsqkwOTHUMXGPKg%2FvJMPOKL6nXojTzWJT%2B3k9rLVjDm3yvKdflYEmkd594BAbC4R2H1ad0VTRID201rgmugthf4ZOCWo%2Fyk9yvzEhAatsXqdXcmzr3iMk7vwh4kawdQiVa1wYnNqpdWc3NVPGNzvzgokUxAz7ylKDWADutG%2B%2BZJkrSIhpmLl4aDvYo%2BT012CpTZLZpBrox%2FPGgKbQ%2BGxTUnskMxNjPFg1ngbJB9iQeZNLfyRmyvQ%2BkTOqFjcjUM6l3pReGIeaP2MdZrw9jb5W6Q0FUC%2FLzcvt%2BOzb2P5Ivpl6YPAWuq3b%2Fee0qxGoiy5owTHKfjwyzMLh65m0M%2BWuEUrlH0ODg7LA%2FpjEdzwCs9TarieRNmp%2BSTQBaa73XQGwxkx29C4bKgI9pC4DYai4ay0pMHHWffTWnZC%2FKautuXea79K99aCQ%2BgYag%2FVap0uTjGCGq%2F3%2BEtZ1xcJhTCBTjLF7NFGaud4C%2FpGSr%2FvHtqI0cTVFQsG30Ta9BGUuU2TG6CbbmvPwxt2%2B53%2FDFNZXlztDb3a80YMNKU0oMGOusBa3U4z%2B19Him7KBsB62nHOgIGcr5XtYLNjoDhVH3BFMMt3XsqpUFFwzm8nEH0Undp1AITkJcmLLD7CJIyAcqUpoOJap9x0FlnAghLt6U7KFalpY78hOI9BH0hlHkx2JHfR9%2F0iN4E0Vt%2FDwp6rh4hggO4dqdz%2Bu%2FQJG5XrJ60vaPxsMbszRNRxbORlzkk3XfLpOXRs%2FhW9s76xrP4%2FETPTpZC13UBUQAv31RvMK4w3RBuPLesdpc8QSvlJWypHTUSymLC2Tdp%2Fll3T217UZDHOj56XNQj%2FrBo%2Bfr5Q5NlmO5J8roYWPrux2cXUQ%3D%3D&X-Amz-Signature=9eeb33d84ca6791c94211d91e557afe6e82de315b16aac0b445140733630803c"
+}
