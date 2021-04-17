@@ -5,18 +5,14 @@ import uuid from 'react-native-uuid'
 import axios from 'axios'
 import * as FileSystem from 'expo-file-system'
 import { StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native'
-import { RNS3 } from 'react-native-aws3';
-import ModelView from 'react-native-gl-model-view';
-
-import becky from '../assets/becky.obj'
-
-
+import { RNS3 } from 'react-native-aws3'
 
 const FormReceiver = ({ route, navigation }) => {
   const { height, photo } = route.params.data
   const [loading, setLoading] = useState(true)
-  const [objectImage, setObjectImage] = useState(null)
+  // const [objectImage, setObjectImage] = useState(null)
   const [measurements, setMeasurements] = useState()
+  const [loadingMessage, setLoadingMessage] = useState('Converting image into 3D, hang on!')
 
   const uploadToAWS = async (uri, prefix, filename, mediaType) => {
     // Generates a random fileId
@@ -36,13 +32,6 @@ const FormReceiver = ({ route, navigation }) => {
       secretKey: AWS_SECRET,
       successActionStatus: 201
     }
-    // Uploads file and returns the url
-    // let imageUrl
-    // await RNS3.put(file, options).then(response => {
-    //   if (response.status !== 201)
-    //     throw new Error("Failed to upload image to S3");
-    //   imageUrl = response.body.postResponse
-    // })
 
     let response = await RNS3.put(file, options)
     if (response.status !== 201) {
@@ -55,7 +44,6 @@ const FormReceiver = ({ route, navigation }) => {
   const getMeasurements = async () => {
     let imageUrl = await uploadToAWS(photo.uri, 'images', 'png', 'image/png')
     console.warn('Image uploaded to AWS: ' + imageUrl.location)
-    // console.log(imageUrl.location)
 
     // Request to turn 2D into 3D
     // let imageMock = "https://2d23d-staging.s3.amazonaws.com/3D%2F2ab2c32f-e258-45d7-a22d-5f9ccef64489.png"
@@ -69,6 +57,7 @@ const FormReceiver = ({ route, navigation }) => {
 
       // Uploads object to AWS
       renderedObject = await axios.post('https://image2scan.3dmeasureup.com/createmesh', params1)
+      setLoadingMessage('Uploading .obj')
       // Creates a folder
       let folder = FileSystem.cacheDirectory + uuid.v4()
       await FileSystem.makeDirectoryAsync(folder, { intermediates: true })
@@ -80,7 +69,7 @@ const FormReceiver = ({ route, navigation }) => {
       // Uploads the obj to AWS
       objUrl = await uploadToAWS(objFile.uri, 'objects', 'obj', 'application/x-tgif')
       console.log(objUrl)
-      setObjectImage(objFile)
+      // setObjectImage(objFile)
     } catch (error) {
       console.error(error)
       debugger
@@ -100,24 +89,29 @@ const FormReceiver = ({ route, navigation }) => {
       "x-api-key": API_KEY_3D
     }
     let response2
+    setLoadingMessage('Producing measurements')
     // Measurements are mocked out.Comment back in below and change requestId param in line 114
-    // try {
-    //   console.log(`Sending create measurements request with params: ${params2}`)
-    //   response2 = await axios.post('https://api.3dmu.prototechsolutions.com/v3/models/measure', params2, { headers: headers })
-    //   console.log(response2)
-    //   debugger
-    // } catch (error) {
-    //   console.log(error)
-    //   return
-    // }
+    try {
+      console.log(`Sending create measurements request with params: ${params2}`)
+      response2 = await axios.post('https://api.3dmu.prototechsolutions.com/v3/models/measure', params2, { headers: headers })
+      console.log(response2)
+      debugger
+    } catch (error) {
+      console.log(error)
+      return
+    }
 
     // Request to retrieve measurements
-
+    setLoadingMessage('Retrieving measurements')
     try {
       console.log(`Sending GET request to retrieve measurements`)
       let mockId = "73e30ee0-9dd4-11eb-9c69-0142fbeb1cb3"
-      let measurements = await axios.get(`https://api.3dmu.prototechsolutions.com/v3/models/metrics?requestId=${mockId}`, { headers: headers })
-      console.log(measurements)
+
+      let measurements = await axios.get(
+        `https://api.3dmu.prototechsolutions.com/v3/models/metrics?requestId=${response2.data.requestId}`,
+        { headers: headers }
+      )
+      // console.log(measurements)
 
       let filteredLength = measurements.data.body.result.metrics.surfaceLengths.filter(item => item.length)
       setMeasurements(filteredLength)
@@ -136,31 +130,18 @@ const FormReceiver = ({ route, navigation }) => {
   return (
     <View style={styles.formContainer}>
       {loading ? (
-        <Text style={styles.loaderText}>Fetching your measurements, just a moment!</Text>
+        <>
+          <Text style={styles.loaderText}>{loadingMessage}</Text>
+          <ActivityIndicator style={styles.loader} size='large' animating={loading} />
+        </>
       ) : (
         <Text style={globals.h1}>Your Measurements</Text>
       )}
 
 
-      <ActivityIndicator style={styles.loader} size='large' animating={loading} />
+
       {measurements && (
         <>
-          <ModelView
-            model={{
-              uri: 'https://2d23d-staging.s3.amazonaws.com/objects%2Fddb0aac5-ec07-4c99-80cd-a94a09c62a6c.obj',
-            }}
-
-
-            scale={0.01}
-
-            translateZ={-2}
-            rotateZ={270}
-
-            style={{ flex: 1 }}
-          />
-          {/* <ModelView
-            source={{ zip: 'https://github.com/BonnierNews/react-native-3d-model-view/blob/master/example/obj/Hamburger.zip?raw=true' }}
-          /> */}
           <FlatList
             data={measurements}
             keyExtractor={(item, index) => index.toString()}
